@@ -8,3 +8,4 @@ Optional:
     *pyopenssl* -> `pip install pyopenssl` -> allow for self signed secure certificate connection.
     Source: `https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https`
 
+*Jinja* documentation -> `https://jinja.palletsprojects.com/en/stable/templates`
