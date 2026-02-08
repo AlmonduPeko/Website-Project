@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Theme Toggle Only</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-light: #fdfdfd;
+      --bg-dark: #0a0a0a;
+      --text-light: #333;
+      --text-dark: #ccc;
+      --accent-color: #00d4ff;
+    }
+
+    /* Theme Definitions */
+    [data-theme="light"] {
+      --bg: var(--bg-light);
+      --text: var(--text-light);
+    }
+
+    [data-theme="dark"] {
+      --bg: var(--bg-dark);
+      --text: var(--text-dark);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.4s ease, color 0.4s ease;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+    }
+
+    /* Theme Toggle Button Styling */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border: 2px solid var(--accent-color);
+      border-radius: 50%;
+      background: rgba(0, 212, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    .theme-toggle:hover {
+      background: var(--accent-color);
+      transform: rotate(180deg);
+    }
+
+    .theme-toggle i {
+      font-size: 1.2rem;
+      position: absolute;
+      transition: opacity 0.3s ease;
+    }
+
+    .sun-icon { color: #ffd700; }
+    .moon-icon { color: #4a90e2; }
+
+    /* Logic to show/hide icons based on theme */
+    [data-theme="light"] .moon-icon { opacity: 0; }
+    [data-theme="dark"] .sun-icon { opacity: 0; }
+  </style>
+</head>
+
+<body>
+
+  <h1>The theme is <span id="themeName">Dark</span></h1>
+
+  <div class="theme-toggle" id="themeToggle">
+    <i class="fas fa-sun sun-icon"></i>
+    <i class="fas fa-moon moon-icon"></i>
+  </div>
+
+  <script>
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeNameDisplay = document.getElementById('themeName');
+
+    // 1. Set initial theme (Defaults to Dark to match your original code)
+    html.setAttribute('data-theme', 'dark');
+
+    // 2. Toggle logic
+    themeToggle.addEventListener('click', function () {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      html.setAttribute('data-theme', newTheme);
+      themeNameDisplay.textContent = newTheme.charAt(0).toUpperCase() + newTheme.slice(1);
+    });
+  </script>
+
+</body>
+</html>
